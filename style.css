@@ -41,6 +41,11 @@ form {
     border-radius: 50%;
     padding: 20px;
     background-color: hsl(259, 100%, 65%);
+    transition: background-color 0.5s ease;
+  }
+
+  button:hover {
+    background-color: black;
   }
 
   label {
@@ -57,6 +62,55 @@ form {
     padding: 12px 14px;
     border: 1px solid hsl(0, 0%, 86%);
     border-radius: 10px;
+  }
+
+  input:focus {
+    outline: none;
+    border: 2px solid hsl(259, 100%, 65%);
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    color: red;
+  }
+
+  small {
+    color: #e74c3c;
+    position: absolute;
+    bottom: 20px;
+    visibility: hidden;
+  }
+
+  .form-group:first-child {
+    small {
+      left: 60px;
+    }
+  }
+
+  .form-group:nth-child(2) {
+    small {
+      left: 240px;
+    }
+  }
+  .form-group:nth-child(3) {
+    small {
+      left: 420px;
+    }
+  }
+
+  .form-group.error small {
+    visibility: visible;
+  }
+
+  .form-group.error label {
+    color: red;
+  }
+
+  .form-group.error input {
+    outline: none;
+    border: 1px solid red;
   }
 }
 

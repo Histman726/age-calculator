@@ -21,12 +21,21 @@
     <div class="center">
       <div class="container">
         <form action="">
-          <label for="day">Day</label>
-          <label for="month">Month</label>
-          <label for="year">Year</label>
-          <input type="number" id="day" placeholder="DD" />
-          <input type="number" id="month" placeholder="MM" />
-          <input type="number" id="year" placeholder="YYYY" />
+          <div class="form-group">
+            <label for="day" id="dayLabel">Day</label>
+            <input type="number" id="day" placeholder="DD" required />
+            <small>Error message</small>
+          </div>
+          <div class="form-group">
+            <label for="month" id="monthLabel">Month</label>
+            <input type="number" id="month" placeholder="MM" required />
+            <small>Error message</small>
+          </div>
+          <div class="form-group">
+            <label for="year" id="yearLabel">Year</label>
+            <input type="number" id="year" placeholder="YYYY" required />
+            <small>Error message</small>
+          </div>
           <button type="submit" id="btn">
             <img src="./assets/images/icon-arrow.svg" alt="" />
           </button>

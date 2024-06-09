@@ -1,6 +1,10 @@
 // HTML ELEMENTS
-const btn = document.getElementById("btn");
+const btn = document.querySelector("#btn");
 const result = document.querySelector(".result");
+let dayInput = document.getElementById("day");
+let monthInput = document.getElementById("month");
+let yearInput = document.getElementById("year");
+let form = document.querySelector("form");
 
 day.max = 31;
 day.min = 1;
@@ -48,21 +52,33 @@ const calcularEdad = (day, month, year) => {
   return [d2, m2, y2];
 };
 
+const setErrorFor = (input, message) => {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  formControl.className = "form-group error";
+  small.innerText = message;
+};
+
+const checkInputs = () => {
+  const days = dayInput.value.trim();
+  const month = monthInput.value.trim();
+  const year = yearInput.value.trim();
+
+  if (days === "") {
+    setErrorFor(dayInput, "This field is required");
+  }
+
+  if (month === "") {
+    setErrorFor(monthInput, "This field is required");
+  }
+
+  if (year === "") {
+    setErrorFor(yearInput, "This field is required");
+  }
+};
+
 btn.addEventListener("click", (e) => {
   e.preventDefault();
-  let dia = parseInt(document.getElementById("day").value);
-  let month = parseInt(document.getElementById("month").value);
-  let year = parseInt(document.getElementById("year").value);
-  let edad = calcularEdad(dia, month, year);
-  result.innerHTML = `
-  <div class="year">
-    <p>${edad[2]} <strong>years</strong></p>
-</div>
-<div class="month">
-    <p>${edad[1]} <strong>months</strong></p>
-</div>
-<div class="day">
-    <p>${edad[0]} <strong>days</strong></p>
-</div>
-  `;
+
+  checkInputs();
 });
