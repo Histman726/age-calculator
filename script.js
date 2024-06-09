@@ -66,14 +66,17 @@ const checkInputs = () => {
 
   if (days === "") {
     setErrorFor(dayInput, "This field is required");
+    form.classList.add("empty");
   }
 
   if (month === "") {
     setErrorFor(monthInput, "This field is required");
+    form.classList.add("empty");
   }
 
   if (year === "") {
     setErrorFor(yearInput, "This field is required");
+    form.classList.add("empty");
   }
 };
 
@@ -81,4 +84,21 @@ btn.addEventListener("click", (e) => {
   e.preventDefault();
 
   checkInputs();
+  if (!form.classList.contains("empty")) {
+    let dia = parseInt(document.getElementById("day").value);
+    let month = parseInt(document.getElementById("month").value);
+    let year = parseInt(document.getElementById("year").value);
+    let edad = calcularEdad(dia, month, year);
+    result.innerHTML = `
+      <div class="year">
+        <p>${edad[2]} <strong>years</strong></p>
+      </div>
+      <div class="month">
+        <p>${edad[1]} <strong>months</strong></p>
+      </div>
+      <div class="day">
+        <p>${edad[0]} <strong>days</strong></p>
+      </div>
+    `;
+  }
 });
