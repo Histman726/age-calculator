@@ -60,9 +60,9 @@ const setErrorFor = (input, message) => {
 };
 
 const checkInputs = () => {
-  const days = dayInput.value.trim();
-  const month = monthInput.value.trim();
-  const year = yearInput.value.trim();
+  let days = dayInput.value.trim();
+  let month = monthInput.value.trim();
+  let year = yearInput.value.trim();
 
   if (days === "") {
     setErrorFor(dayInput, "This field is required");
@@ -78,13 +78,41 @@ const checkInputs = () => {
     setErrorFor(yearInput, "This field is required");
     form.classList.add("empty");
   }
+
+  days = parseInt(days);
+  month = parseInt(month);
+  year = parseInt(year);
+
+  if (days > 32 || days < 0) {
+    setErrorFor(dayInput, "Must be valid day");
+    form.classList.add("empty");
+  }
+
+  if (month > 12 || month < 0) {
+    setErrorFor(monthInput, "Must be valid month");
+    form.classList.add("empty");
+  }
+
+  if (year > new Date().getFullYear() || year < 0) {
+    setErrorFor(yearInput, "Must be in past");
+    form.classList.add("empty");
+  }
+
+  daysInMonth = getDaysInMonth(year, month);
+  if (days > daysInMonth) {
+    setErrorFor(dayInput, "Must be valid date");
+    form.classList.add("empty");
+  }
 };
 
 btn.addEventListener("click", (e) => {
   e.preventDefault();
-
+  form.classList.remove("empty");
   checkInputs();
   if (!form.classList.contains("empty")) {
+    form.querySelectorAll(".form-group").forEach((element) => {
+      element.classList.remove("error");
+    });
     let dia = parseInt(document.getElementById("day").value);
     let month = parseInt(document.getElementById("month").value);
     let year = parseInt(document.getElementById("year").value);
