@@ -147,3 +147,53 @@ form > * {
 .attribution a {
   color: hsl(228, 45%, 44%);
 }
+
+@media (width < 376px) {
+  .center {
+    width: 345px;
+  }
+
+  form {
+    padding: 54px 24px 45px 24px;
+    column-gap: 10px;
+
+    input {
+      font-size: 22px;
+    }
+
+    button {
+      right: 125px;
+      bottom: -105px;
+    }
+
+    small {
+      bottom: 5px;
+      display: block;
+      text-wrap: wrap;
+      width: 33%;
+    }
+
+    .form-group:first-child {
+      small {
+        left: 30px;
+      }
+    }
+
+    .form-group:nth-child(2) {
+      small {
+        left: 130px;
+      }
+    }
+
+    .form-group:nth-child(3) {
+      small {
+        left: 230px;
+      }
+    }
+  }
+
+  hr {
+    margin-inline: 24px;
+    margin-top: 60px;
+  }
+}
